@@ -15,7 +15,7 @@ use Symfony\Component\Messenger\Exception\InvalidArgumentException;
 use Symfony\Component\Messenger\Exception\LogicException;
 
 /**
- * An AMQP connection.
+ * !!!FIX!!! An AMQP connection.
  *
  * @author Samuel Roze <samuel.roze@gmail.com>
  *
@@ -335,12 +335,12 @@ class Connection
         return null;
     }
 
-    public function ack(\AMQPEnvelope $message, string $queueName): bool
+    public function ack(\AMQPEnvelope $message, string $queueName): ?bool
     {
         return $this->queue($queueName)->ack($message->getDeliveryTag());
     }
 
-    public function nack(\AMQPEnvelope $message, string $queueName, int $flags = AMQP_NOPARAM): bool
+    public function nack(\AMQPEnvelope $message, string $queueName, int $flags = AMQP_NOPARAM): ?bool
     {
         return $this->queue($queueName)->nack($message->getDeliveryTag(), $flags);
     }
